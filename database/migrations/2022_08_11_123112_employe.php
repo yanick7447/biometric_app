@@ -13,7 +13,7 @@ class Employe extends Migration
      */
     public function up()
     {
-        Schema::create('employe', function (Blueprint $table) {
+        Schema::create('employes', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
             $table->foreignId('user_id');

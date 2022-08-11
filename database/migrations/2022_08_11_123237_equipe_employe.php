@@ -13,11 +13,11 @@ class EquipeEmploye extends Migration
      */
     public function up()
     {
-        Schema::create('equipe_employe', function (Blueprint $table) {
+        Schema::create('equipe_employes', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->foreignId('employe_id');
-            $table->foreignId('equipe_id');
+            $table->foreign('employe_id')->references('id')->on('employes');
+            $table->foreign('equipe_id');
             $table->foreignId('role_id');
             $table->timestamps();
             $table->foreignId('user_id');
