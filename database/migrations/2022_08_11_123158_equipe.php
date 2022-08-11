@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Equipe extends Migration
+class Equipes extends Migration
 {
     /**
      * Run the migrations.
@@ -14,20 +14,20 @@ class Equipe extends Migration
     public function up()
     {
         Schema::create('equipes', function (Blueprint $table) {
-        $table->engine = 'InnoDB';
-        $table->id();
-        $table->foreignId('etat_id');
-        $table->text('objectif');
-        $table->string('lieu_travail');
-        $table->double('long');
-        $table->double('lat');
-        $table->date('debut');
-        $table->date('fin');
-        $table->integer('note');
-        $table->text('remarque');
-        $table->timestamps();
-        $table->foreignId('user_id');
-        $table->softDeletes();
+            $table->engine = 'InnoDB';
+            $table->id();
+            $table->foreignId('etat_id');
+            $table->text('objectif');
+            $table->string('lieu_travail');
+            $table->double('long');
+            $table->double('lat');
+            $table->date('debut');
+            $table->date('fin');
+            $table->integer('note');
+            $table->text('remarque');
+            $table->timestamps();
+            $table->foreignId('user_id');
+            $table->softDeletes();
         });
     }
 
