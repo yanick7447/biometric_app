@@ -4,29 +4,29 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Equipes extends Migration
+class Equipe extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up():void
     {
-        Schema::create('equipes', function (Blueprint $table) {
+        Schema::create('equipes', static function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->foreignId('etat_id');
-            $table->text('objectif');
+            $table->foreignId('etat_id')->nullable();
+            $table->foreignId('user_id')->nullable();
+            $table->text('objectif')->nullable();
             $table->string('lieu_travail');
             $table->double('long');
             $table->double('lat');
             $table->date('debut');
-            $table->date('fin');
-            $table->integer('note');
-            $table->text('remarque');
-            $table->timestamps();
-            $table->foreignId('user_id');
+            $table->date('fin')->nullable();
+            $table->integer('note')->nullable();
+            $table->text('remarque')->nullable();
+            $table->timestampsTz();
             $table->softDeletes();
         });
     }
@@ -36,8 +36,6 @@ class Equipes extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        //
-    }
+    public function down():void
+    { Schema::dropIfExists('equipes'); }
 }

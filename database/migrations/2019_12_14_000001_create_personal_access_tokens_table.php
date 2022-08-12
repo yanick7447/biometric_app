@@ -11,9 +11,9 @@ class CreatePersonalAccessTokensTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('personal_access_tokens', function (Blueprint $table) {
+        Schema::create('personal_access_tokens', static function (Blueprint $table) {
             $table->engine='InnoDB';
             $table->id();
             $table->unsignedBigInteger('tokenable_id');
@@ -31,8 +31,6 @@ class CreatePersonalAccessTokensTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('personal_access_tokens');
-    }
+    public function down(): void
+    {  Schema::dropIfExists('personal_access_tokens'); }
 }

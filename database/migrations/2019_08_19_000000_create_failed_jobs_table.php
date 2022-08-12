@@ -11,9 +11,9 @@ class CreateFailedJobsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('failed_jobs', function (Blueprint $table) {
+        Schema::create('failed_jobs', static function (Blueprint $table) {
             $table->engine='InnoDB';
             $table->id();
             $table->string('uuid', 100)->unique();
@@ -30,8 +30,6 @@ class CreateFailedJobsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('failed_jobs');
-    }
+    public function down(): void
+    { Schema::dropIfExists('failed_jobs'); }
 }

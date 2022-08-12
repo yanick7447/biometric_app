@@ -4,26 +4,25 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class EquipeEmployes extends Migration
+class EquipeEmploye extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up():void
     {
-        Schema::create('equipe_employes', function (Blueprint $table) {
+        Schema::create('equipe_employes', static function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->foreign('employe_id')->references('id')->on('employes');
-            $table->foreign('equipe_id');
-            $table->foreignId('role_id');
-            $table->timestamps();
-            $table->foreignId('user_id');
+            $table->foreignId('employe_id')->nullable();
+            $table->foreignId('equipe_id')->nullable();
+            $table->foreignId('role_id')->nullable();
+            $table->foreignId('user_id')->nullable();
             $table->integer('statut');
-            $table->softDeletes();
-
+            $table->timestampsTz();
+            $table->softDeletesTz();
         });
     }
 
@@ -32,8 +31,6 @@ class EquipeEmployes extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        //
-    }
+    public function down():void
+    { Schema::dropIfExists('equipe_employes'); }
 }

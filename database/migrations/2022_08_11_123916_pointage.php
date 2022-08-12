@@ -11,22 +11,21 @@ class Pointage extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('pointage', function (Blueprint $table) {
+        Schema::create('pointages', static function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->foreignId('equipe_id');
-            $table->foreignId('employe_id');
-            $table->foreignId('jour_travail_id');
-            $table->foreignId('type_id');
-            $table->datetime('date_pointage');
+            $table->foreignId('user_id')->nullable();
+            $table->foreignId('equipe_id')->nullable();
+            $table->foreignId('employe_id')->nullable();
+            $table->foreignId('jour_travail_id')->nullable();
+            $table->foreignId('type_id')->nullable();
+            $table->datetime('date_pointage')->nullable();
             $table->double('long');
             $table->double('lat');
-            $table->foreignId('user_id');
-            $table->timestamps();
-            $table->softDeletes();
-
+            $table->timestampsTz();
+            $table->softDeletesTz();
         });
     }
 
@@ -35,8 +34,6 @@ class Pointage extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        //
-    }
+    public function down(): void
+    { Schema::dropIfExists('pointages'); }
 }

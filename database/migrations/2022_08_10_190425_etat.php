@@ -11,14 +11,14 @@ class Etat extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up() : void
     {
-        Schema::create('etat', function (Blueprint $table) {
+        Schema::create('etats', static function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
             $table->string('name');
-            $table->timestamps();
-            $table->softDeletes();
+            $table->timestampsTz();
+            $table->softDeletesTz();
         });
     }
 
@@ -27,8 +27,6 @@ class Etat extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        //
-    }
+    public function down() : void
+    { Schema::dropIfExists('etats'); }
 }

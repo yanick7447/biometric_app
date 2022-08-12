@@ -11,14 +11,14 @@ class TypePointage extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up():void
     {
-        Schema::create('type_pointage', function (Blueprint $table) {
+        Schema::create('type_pointages', static function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
             $table->string('name');
-            $table->timestamps();
-            $table->softDeletes();
+            $table->timestampsTz();
+            $table->softDeletesTz();
         });
     }
 
@@ -27,8 +27,6 @@ class TypePointage extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        //
-    }
+    public function down(): void
+    { Schema::dropIfExists('type_pointages'); }
 }

@@ -11,31 +11,30 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('users', static function (Blueprint $table) {
             $table->engine='InnoDB';
             $table->id();
             $table->string('name');
             $table->string('email', 100)->unique();
+            $table->unsignedBigInteger('cni')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
             $table->string('matricule',100)->unique();
             $table->string('surname');
-            $table->date('dob');
-            $table->string('sexe');
-            $table->text('empreinte1');
-            $table->text('empreinte2');
-            $table->text('empreinte3');
-            $table->string('avatar');
-            $table->text('phone1');
-            $table->text('phone2');
-            $table->unsignedBigInteger('cni');
-            $table->string('quartier');
-            $table->softDeletes();
-
+            $table->date('dob')->nullable();
+            $table->string('sexe')->nullable();
+            $table->text('empreinte1')->nullable();
+            $table->text('empreinte2')->nullable();
+            $table->text('empreinte3')->nullable();
+            $table->string('avatar')->nullable();
+            $table->text('phone1')->nullable();
+            $table->text('phone2')->nullable();
+            $table->string('quartier')->nullable();
+            $table->rememberToken();
+            $table->timestampsTz();
+            $table->softDeletesTz();
         });
     }
 
@@ -44,8 +43,6 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('users');
-    }
+    public function down(): void
+    { Schema::dropIfExists('users'); }
 }

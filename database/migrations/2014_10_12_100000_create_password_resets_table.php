@@ -11,9 +11,9 @@ class CreatePasswordResetsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up():void
     {
-        Schema::create('password_resets', function (Blueprint $table) {
+        Schema::create('password_resets', static function (Blueprint $table) {
             $table->engine='InnoDB';
             $table->string('email', 100)->index();
             $table->string('token');
@@ -26,8 +26,6 @@ class CreatePasswordResetsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('password_resets');
-    }
+    public function down():void
+    { Schema::dropIfExists('password_resets'); }
 }

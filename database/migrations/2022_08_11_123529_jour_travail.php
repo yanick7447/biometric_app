@@ -11,28 +11,28 @@ class JourTravail extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up():void
     {
-        Schema::create('jour_travail', function (Blueprint $table) {
+        Schema::create('jour_travails', static function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->foreignId('equipe_id');
-            $table->foreignId('etat_id');
-            $table->text('objectif');
+            $table->foreignId('equipe_id')->nullable();
+            $table->foreignId('etat_id')->nullable();
+            $table->foreignId('user_id')->nullable();
+            $table->text('objectif')->nullable();
             $table->text('lieu');
             $table->datetime('debut');
-            $table->datetime('fin');
+            $table->datetime('fin')->nullable();
             $table->text('rapport');
-            $table->string('photo1');
-            $table->string('photo2');
-            $table->string('photo3');
-            $table->double('long1');
-            $table->double('lat1');
-            $table->double('long2');
-            $table->double('lat2');
-            $table->foreignId('user_id');
-            $table->softDeletes();
-
+            $table->string('photo1')->nullable();
+            $table->string('photo2')->nullable();
+            $table->string('photo3')->nullable();
+            $table->double('long1')->nullable();
+            $table->double('lat1')->nullable();
+            $table->double('long2')->nullable();
+            $table->double('lat2')->nullable();
+            $table->timestampsTz();
+            $table->softDeletesTz();
         });
     }
 
@@ -41,8 +41,6 @@ class JourTravail extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        //
-    }
+    public function down():void
+    { Schema::dropIfExists('jour_travails'); }
 }
