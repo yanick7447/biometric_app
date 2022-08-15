@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class RoleSeeder extends Seeder
@@ -11,8 +12,11 @@ class RoleSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        //
+        Role::query()->create(['nom' => 'admin']);
+        Role::query()->create(['nom' => 'coordonnateur']);
+        Role::query()->create(['nom' => 'chef d’équipe']);
+        Role::query()->create(['nom' => 'exécutant']);
     }
 }
