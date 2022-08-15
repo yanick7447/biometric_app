@@ -27,7 +27,7 @@ class Equipe extends Migration
             $table->integer('note')->nullable();
             $table->text('remarque')->nullable();
             $table->timestampsTz();
-            $table->softDeletes();
+            $table->softDeletesTz();
         });
     }
 

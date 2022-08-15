@@ -16,7 +16,7 @@ class Etat extends Migration
         Schema::create('etats', static function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->string('name');
+            $table->string('nom');
             $table->timestampsTz();
             $table->softDeletesTz();
         });

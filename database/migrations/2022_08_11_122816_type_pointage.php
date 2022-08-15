@@ -16,7 +16,7 @@ class TypePointage extends Migration
         Schema::create('type_pointages', static function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->string('name');
+            $table->string('nom');
             $table->timestampsTz();
             $table->softDeletesTz();
         });

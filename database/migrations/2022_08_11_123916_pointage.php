@@ -21,7 +21,7 @@ class Pointage extends Migration
             $table->foreignId('employe_id')->nullable();
             $table->foreignId('jour_travail_id')->nullable();
             $table->foreignId('type_id')->nullable();
-            $table->datetime('date_pointage')->nullable();
+            $table->datetime('date_pointage');
             $table->double('long');
             $table->double('lat');
             $table->timestampsTz();

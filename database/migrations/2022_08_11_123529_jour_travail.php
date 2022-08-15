@@ -27,10 +27,10 @@ class JourTravail extends Migration
             $table->string('photo1')->nullable();
             $table->string('photo2')->nullable();
             $table->string('photo3')->nullable();
-            $table->double('long1')->nullable();
-            $table->double('lat1')->nullable();
-            $table->double('long2')->nullable();
-            $table->double('lat2')->nullable();
+            $table->double('debut_long')->nullable();
+            $table->double('debut_lat')->nullable();
+            $table->double('fin_long')->nullable();
+            $table->double('fin_lat')->nullable();
             $table->timestampsTz();
             $table->softDeletesTz();
         });

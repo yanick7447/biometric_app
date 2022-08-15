@@ -19,13 +19,12 @@ class Employe extends Migration
             $table->foreignId('user_id')->nullable();
             $table->foreignId('poste_id')->nullable();
             $table->foreignId('role_id')->nullable();
-            $table->foreignId('user_id1')->nullable();
+            $table->foreignId('admin_id')->nullable();
             $table->date('debut');
             $table->date('fin')->nullable();
             $table->integer('statut');
             $table->timestampsTz();
-            $table->softDeletes();
-
+            $table->softDeletesTz();
         });
     }
 

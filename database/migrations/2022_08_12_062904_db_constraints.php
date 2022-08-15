@@ -15,7 +15,7 @@ class DbConstraints extends Migration
         Schema::table('employes', static function ($table) {
             $table->foreign('user_id')->references('id')->on('users')
                 ->nullOnDelete()->cascadeOnUpdate();
-            $table->foreign('user_id1')->references('id')->on('users')
+            $table->foreign('admin_id')->references('id')->on('users')
                 ->nullOnDelete()->cascadeOnUpdate();
             $table->foreign('poste_id')->references('id')->on('postes')
                 ->nullOnDelete()->cascadeOnUpdate();

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Pointage extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id', 'equipe_id', 'employe_id', 'jour_travail_id',
+        'type_id', 'date_pointage', 'long', 'lat',
+    ];
 }
