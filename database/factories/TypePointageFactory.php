@@ -11,10 +11,10 @@ class TypePointageFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition():array
     {
         return [
-            //
+            'nom' => $this->faker->name
         ];
     }
 }

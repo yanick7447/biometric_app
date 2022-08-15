@@ -3,7 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Ramsey\Uuid\Uuid;
 
 class UserFactory extends Factory
 {
@@ -12,23 +13,33 @@ class UserFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
+        $gender = $this->faker->randomElement(['male','female']);
+        $domain = $this->faker->randomElement(['@gmail.com','@yahoo.fr','@outlook.com','@aut.com']);
+        $firstName = $this->faker->firstName($gender);
+        $lastName = $this->faker->unique()->lastName;
         return [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+            'nom'=>$firstName,
+            'prenom'=>$lastName,
+            'email'=>$firstName.$lastName.$domain,
+            'password'=>Hash::make('password'),
+            'matricule'=>Uuid::uuid4(),
+            'ddn' => $this->faker->date,
+            'cni' => time().$this->faker->unique()->randomDigit(),
+            'sexe' => $gender,
+            'empreinte1' => $this->faker->linuxPlatformToken,
+            'tel1' => $this->faker->phoneNumber,
+            'quartier' => $this->faker->streetAddress(),
         ];
     }
 
     /**
      * Indicate that the model's email address should be unverified.
      *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     * @return Factory
      */
-    public function unverified()
+    public function unverified(): Factory
     {
         return $this->state(function (array $attributes) {
             return [
