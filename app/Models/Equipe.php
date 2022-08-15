@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Equipe extends Model
 {
@@ -13,4 +14,11 @@ class Equipe extends Model
          'long', 'lat', 'debut', 'fin',
          'note', 'remarque',
      ];
+
+    public function user():BelongsTo
+    { return $this->belongsTo(User::class); }
+
+    public function etat():BelongsTo
+    { return $this->belongsTo(Etat::class); }
+
 }
