@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\Response;
-use App\Models\Role;
+use App\Models\JourTravail;
 use Illuminate\Http\Request;
 
-class RoleController extends Controller
+class JourTravailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class RoleController extends Controller
      * @return array
      */
     public function index(): array
-    {  return (new Response)->success(Role::all()); }
+    {  return (new Response)->success(JourTravail::all()); }
 
     /**
      * Store a newly created resource in storage.
@@ -25,11 +25,11 @@ class RoleController extends Controller
      */
     public function store(Request $request): array
     {
-        $role = new Role((array)$request);
-        if (!$role->save())
+        $user = new JourTravail((array)$request);
+        if (!$user->save())
         { return (new Response)->error(); }
 
-        return (new Response)->created($role);
+        return (new Response)->created($user);
     }
 
     /**
@@ -40,15 +40,15 @@ class RoleController extends Controller
      */
     public function show(int $id): array
     {
-        $role = Role::query()->find($id);
-        if(!$role)
+        $user = JourTravail::query()->find($id);
+        if(!$user)
         { return (new Response)->IdNotFound(); }
-        return (new Response)->success($role);
+        return (new Response)->success($user);
     }
 
     /**
      * Update the specified resource in storage.
-     * EC = Role Collection name for Spatie media
+     * EC = JourTravail Collection name for Spatie media
      *
      * @param Request $request
      * @param int $id
@@ -56,13 +56,13 @@ class RoleController extends Controller
      */
     public function update(Request $request, int $id): array
     {
-        $role = Role::query()->find($id);
-        if(!$role)
+        $user = JourTravail::query()->find($id);
+        if(!$user)
         { return (new Response)->IdNotFound(); }
 
-        if (!$role->update((array)$request))
+        if (!$user->update((array)$request))
         { return (new Response)->error(400); }
-        return (new Response)->success($role);
+        return (new Response)->success($user);
     }
 
     /**
@@ -73,12 +73,12 @@ class RoleController extends Controller
      */
     public function destroy(int $id): array
     {
-        $role = Role::query()->find($id);
-        if(!$role)
+        $user = JourTravail::query()->find($id);
+        if(!$user)
         { return (new Response)->IdNotFound(); }
 
-        if (!$role->delete())
-        { return (new Response)->error(400,$role); }
-        return (new Response)->error($role);
+        if (!$user->delete())
+        { return (new Response)->error(400,$user); }
+        return (new Response)->error($user);
     }
 }

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\Response;
-use App\Models\Pointage;
+use App\Models\Poste;
 use Illuminate\Http\Request;
 
-class PointageController extends Controller
+class PosteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class PointageController extends Controller
      * @return array
      */
     public function index(): array
-    {  return (new Response)->success(Pointage::all()); }
+    {  return (new Response)->success(Poste::all()); }
 
     /**
      * Store a newly created resource in storage.
@@ -25,11 +25,11 @@ class PointageController extends Controller
      */
     public function store(Request $request): array
     {
-        $pointage = new Pointage((array)$request);
-        if (!$pointage->save())
+        $poste = new Poste((array)$request);
+        if (!$poste->save())
         { return (new Response)->error(); }
 
-        return (new Response)->created($pointage);
+        return (new Response)->created($poste);
     }
 
     /**
@@ -40,15 +40,15 @@ class PointageController extends Controller
      */
     public function show(int $id): array
     {
-        $pointage = Pointage::query()->find($id);
-        if(!$pointage)
+        $poste = Poste::query()->find($id);
+        if(!$poste)
         { return (new Response)->IdNotFound(); }
-        return (new Response)->success($pointage);
+        return (new Response)->success($poste);
     }
 
     /**
      * Update the specified resource in storage.
-     * EC = Pointage Collection name for Spatie media
+     * EC = Poste Collection name for Spatie media
      *
      * @param Request $request
      * @param int $id
@@ -56,13 +56,13 @@ class PointageController extends Controller
      */
     public function update(Request $request, int $id): array
     {
-        $pointage = Pointage::query()->find($id);
-        if(!$pointage)
+        $poste = Poste::query()->find($id);
+        if(!$poste)
         { return (new Response)->IdNotFound(); }
 
-        if (!$pointage->update((array)$request))
+        if (!$poste->update((array)$request))
         { return (new Response)->error(400); }
-        return (new Response)->success($pointage);
+        return (new Response)->success($poste);
     }
 
     /**
@@ -73,12 +73,12 @@ class PointageController extends Controller
      */
     public function destroy(int $id): array
     {
-        $pointage = Pointage::query()->find($id);
-        if(!$pointage)
+        $poste = Poste::query()->find($id);
+        if(!$poste)
         { return (new Response)->IdNotFound(); }
 
-        if (!$pointage->delete())
-        { return (new Response)->error(400,$pointage); }
-        return (new Response)->error($pointage);
+        if (!$poste->delete())
+        { return (new Response)->error(400,$poste); }
+        return (new Response)->error($poste);
     }
 }

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\Response;
-use App\Models\Employe;
+use App\Models\Equipe;
 use Illuminate\Http\Request;
 
-class EmployeController extends Controller
+class EquipeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class EmployeController extends Controller
      * @return array
      */
     public function index(): array
-    {  return (new Response)->success(Employe::all()); }
+    {  return (new Response)->success(Equipe::all()); }
 
     /**
      * Store a newly created resource in storage.
@@ -25,11 +25,11 @@ class EmployeController extends Controller
      */
     public function store(Request $request): array
     {
-        $employe = new Employe((array)$request);
-        if (!$employe->save())
+        $equipe = new Equipe((array)$request);
+        if (!$equipe->save())
         { return (new Response)->error(); }
 
-        return (new Response)->created($employe);
+        return (new Response)->created($equipe);
     }
 
     /**
@@ -40,15 +40,15 @@ class EmployeController extends Controller
      */
     public function show(int $id): array
     {
-        $employe = Employe::query()->find($id);
-        if(!$employe)
+        $equipe = Equipe::query()->find($id);
+        if(!$equipe)
         { return (new Response)->IdNotFound(); }
-        return (new Response)->success($employe);
+        return (new Response)->success($equipe);
     }
 
     /**
      * Update the specified resource in storage.
-     * EC = Employe Collection name for Spatie media
+     * EC = Equipe Collection name for Spatie media
      *
      * @param Request $request
      * @param int $id
@@ -56,13 +56,13 @@ class EmployeController extends Controller
      */
     public function update(Request $request, int $id): array
     {
-        $employe = Employe::query()->find($id);
-        if(!$employe)
+        $equipe = Equipe::query()->find($id);
+        if(!$equipe)
         { return (new Response)->IdNotFound(); }
 
-        if (!$employe->update((array)$request))
+        if (!$equipe->update((array)$request))
         { return (new Response)->error(400); }
-        return (new Response)->success($employe);
+        return (new Response)->success($equipe);
     }
 
     /**
@@ -73,12 +73,12 @@ class EmployeController extends Controller
      */
     public function destroy(int $id): array
     {
-        $employe = Employe::query()->find($id);
-        if(!$employe)
+        $equipe = Equipe::query()->find($id);
+        if(!$equipe)
         { return (new Response)->IdNotFound(); }
 
-        if (!$employe->delete())
-        { return (new Response)->error(400,$employe); }
-        return (new Response)->error($employe);
+        if (!$equipe->delete())
+        { return (new Response)->error(400,$equipe); }
+        return (new Response)->error($equipe);
     }
 }

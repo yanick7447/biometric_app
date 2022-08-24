@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\Response;
-use App\Models\Equipe;
+use App\Models\TypePointage;
 use Illuminate\Http\Request;
 
-class EquipeController extends Controller
+class TypePointageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class EquipeController extends Controller
      * @return array
      */
     public function index(): array
-    {  return (new Response)->success(Equipe::all()); }
+    {  return (new Response)->success(TypePointage::all()); }
 
     /**
      * Store a newly created resource in storage.
@@ -25,11 +25,11 @@ class EquipeController extends Controller
      */
     public function store(Request $request): array
     {
-        $equipe = new Equipe((array)$request);
-        if (!$equipe->save())
+        $typePointage = new TypePointage((array)$request);
+        if (!$typePointage->save())
         { return (new Response)->error(); }
 
-        return (new Response)->created($equipe);
+        return (new Response)->created($typePointage);
     }
 
     /**
@@ -40,15 +40,15 @@ class EquipeController extends Controller
      */
     public function show(int $id): array
     {
-        $equipe = Equipe::query()->find($id);
-        if(!$equipe)
+        $typePointage = TypePointage::query()->find($id);
+        if(!$typePointage)
         { return (new Response)->IdNotFound(); }
-        return (new Response)->success($equipe);
+        return (new Response)->success($typePointage);
     }
 
     /**
      * Update the specified resource in storage.
-     * EC = Equipe Collection name for Spatie media
+     * EC = TypePointage Collection name for Spatie media
      *
      * @param Request $request
      * @param int $id
@@ -56,13 +56,13 @@ class EquipeController extends Controller
      */
     public function update(Request $request, int $id): array
     {
-        $equipe = Equipe::query()->find($id);
-        if(!$equipe)
+        $typePointage = TypePointage::query()->find($id);
+        if(!$typePointage)
         { return (new Response)->IdNotFound(); }
 
-        if (!$equipe->update((array)$request))
+        if (!$typePointage->update((array)$request))
         { return (new Response)->error(400); }
-        return (new Response)->success($equipe);
+        return (new Response)->success($typePointage);
     }
 
     /**
@@ -73,12 +73,12 @@ class EquipeController extends Controller
      */
     public function destroy(int $id): array
     {
-        $equipe = Equipe::query()->find($id);
-        if(!$equipe)
+        $typePointage = TypePointage::query()->find($id);
+        if(!$typePointage)
         { return (new Response)->IdNotFound(); }
 
-        if (!$equipe->delete())
-        { return (new Response)->error(400,$equipe); }
-        return (new Response)->error($equipe);
+        if (!$typePointage->delete())
+        { return (new Response)->error(400,$typePointage); }
+        return (new Response)->error($typePointage);
     }
 }

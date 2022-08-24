@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Traits\Response;
-use App\Models\User;
+use App\Models\Pointage;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class PointageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class UserController extends Controller
      * @return array
      */
     public function index(): array
-    {  return (new Response)->success(User::all()); }
+    {  return (new Response)->success(Pointage::all()); }
 
     /**
      * Store a newly created resource in storage.
@@ -25,11 +25,11 @@ class UserController extends Controller
      */
     public function store(Request $request): array
     {
-        $user = new User((array)$request);
-        if (!$user->save())
+        $pointage = new Pointage((array)$request);
+        if (!$pointage->save())
         { return (new Response)->error(); }
 
-        return (new Response)->created($user);
+        return (new Response)->created($pointage);
     }
 
     /**
@@ -40,15 +40,15 @@ class UserController extends Controller
      */
     public function show(int $id): array
     {
-        $user = User::query()->find($id);
-        if(!$user)
+        $pointage = Pointage::query()->find($id);
+        if(!$pointage)
         { return (new Response)->IdNotFound(); }
-        return (new Response)->success($user);
+        return (new Response)->success($pointage);
     }
 
     /**
      * Update the specified resource in storage.
-     * EC = User Collection name for Spatie media
+     * EC = Pointage Collection name for Spatie media
      *
      * @param Request $request
      * @param int $id
@@ -56,13 +56,13 @@ class UserController extends Controller
      */
     public function update(Request $request, int $id): array
     {
-        $user = User::query()->find($id);
-        if(!$user)
+        $pointage = Pointage::query()->find($id);
+        if(!$pointage)
         { return (new Response)->IdNotFound(); }
 
-        if (!$user->update((array)$request))
+        if (!$pointage->update((array)$request))
         { return (new Response)->error(400); }
-        return (new Response)->success($user);
+        return (new Response)->success($pointage);
     }
 
     /**
@@ -73,12 +73,12 @@ class UserController extends Controller
      */
     public function destroy(int $id): array
     {
-        $user = User::query()->find($id);
-        if(!$user)
+        $pointage = Pointage::query()->find($id);
+        if(!$pointage)
         { return (new Response)->IdNotFound(); }
 
-        if (!$user->delete())
-        { return (new Response)->error(400,$user); }
-        return (new Response)->error($user);
+        if (!$pointage->delete())
+        { return (new Response)->error(400,$pointage); }
+        return (new Response)->error($pointage);
     }
 }
