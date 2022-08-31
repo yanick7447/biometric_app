@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\API\EmployeController;
-use App\Http\Controllers\API\EquipeController;
-use App\Http\Controllers\API\EquipeEmployeController;
-use App\Http\Controllers\API\EtatController;
-use App\Http\Controllers\API\JourTravailController;
-use App\Http\Controllers\API\PointageController;
-use App\Http\Controllers\API\PosteController;
-use App\Http\Controllers\API\RoleController;
-use App\Http\Controllers\API\TypePointageController;
-use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\V1\AuthController;
+use App\Http\Controllers\API\V1\EmployeController;
+use App\Http\Controllers\API\V1\EquipeController;
+use App\Http\Controllers\API\V1\EquipeEmployeController;
+use App\Http\Controllers\API\V1\EtatController;
+use App\Http\Controllers\API\V1\JourTravailController;
+use App\Http\Controllers\API\V1\PointageController;
+use App\Http\Controllers\API\V1\PosteController;
+use App\Http\Controllers\API\V1\RoleController;
+use App\Http\Controllers\API\V1\TypePointageController;
+use App\Http\Controllers\API\V1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('login', [AuthController::class, 'login']);
 Route::apiResource('user', UserController::class);
 Route::apiResource('employe', EmployeController::class);
 Route::apiResource('equipe', EquipeController::class);

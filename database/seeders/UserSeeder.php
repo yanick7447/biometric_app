@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
             'email' => 'tenas@gmail.com',
             'password' => Hash::make('password'),
             'sexe' => 'male',
-            'tel1' => '+237653051038',
+            'tel1' => '237653051038',
             'ddn' => now(),
             'quartier' => 'streets',
         ]);

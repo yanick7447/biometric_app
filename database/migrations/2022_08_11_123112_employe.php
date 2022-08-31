@@ -22,7 +22,7 @@ class Employe extends Migration
             $table->foreignId('admin_id')->nullable();
             $table->date('debut');
             $table->date('fin')->nullable();
-            $table->integer('statut');
+            $table->boolean('statut')->default(true);
             $table->timestampsTz();
             $table->softDeletesTz();
         });

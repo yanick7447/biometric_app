@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Traits\Response;
 use App\Models\TypePointage;
+use App\Traits\Response;
 use Illuminate\Http\Request;
 
 class TypePointageController extends Controller

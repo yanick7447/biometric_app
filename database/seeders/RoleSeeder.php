@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Role;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class RoleSeeder extends Seeder
 {
@@ -14,9 +14,9 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::query()->create(['nom' => 'admin']);
-        Role::query()->create(['nom' => 'coordonnateur']);
-        Role::query()->create(['nom' => 'chef d’équipe']);
-        Role::query()->create(['nom' => 'exécutant']);
+        Role::query()->create(['name' => 'admin']);
+        Role::query()->create(['name' => 'coordonnateur']);
+        Role::query()->create(['name' => 'chef d’équipe']);
+        Role::query()->create(['name' => 'exécutant']);
     }
 }

@@ -29,8 +29,8 @@ class CreateUsersTable extends Migration
             $table->text('empreinte2')->nullable();
             $table->text('empreinte3')->nullable();
             $table->string('avatar')->nullable();
-            $table->text('tel1')->nullable();
-            $table->text('tel2')->nullable();
+            $table->string('tel1')->unique();
+            $table->string('tel2')->nullable();
             $table->string('quartier')->nullable();
             $table->rememberToken();
             $table->timestampsTz();

@@ -29,7 +29,7 @@ class UserFactory extends Factory
             'cni' => time().$this->faker->unique()->randomDigit(),
             'sexe' => $gender,
             'empreinte1' => $this->faker->linuxPlatformToken,
-            'tel1' => $this->faker->phoneNumber,
+            'tel1' => $this->faker->unique()->phoneNumber,
             'quartier' => $this->faker->streetAddress(),
         ];
     }

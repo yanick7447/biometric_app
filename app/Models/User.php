@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -37,4 +38,13 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [ 'email_verified_at' => 'datetime',];
+
+    public function employe():HasMany
+    { return $this->hasMany(Employe::class); }
+
+    public function hasActiveAcc(){
+        $acc = Employe::query()->where('user_id',$this->id)->where('statut',true)->first();
+        if($acc === null) return false;
+        return true;
+    }
 }
